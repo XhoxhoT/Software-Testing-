@@ -3,21 +3,31 @@
 
     <listeners>
         <listener class-name="selenium.training.utils.Listeners"/>
+        <listener class-name="org.testng.reporters.EmailableReporter"/>
+
     </listeners>
 
     <test name="All Tests">
+
         <classes>
-            <class name="selenium.training.tests.LoginTests">
+            <class name="selenium.training.tests.RegisterTest">
                 <methods>
-                    <include name="successfulLoginTest"/>
-                    <include name="successfulLoginTest2"/>
-                    <exclude name="successfulLoginTest3"/>
-                    <include name="unsuccessfulLoginTest" />
+                    <include name="register"/>
                 </methods>
             </class>
-            <class name="selenium.training.tests.AddNewEmployeeTest">
+            <class name="selenium.training.tests.LoginTest">
                 <methods>
-                    <include name="addNewEmployeeTest" />
+                    <include name="login" />
+                </methods>
+            </class>
+            <class name="selenium.training.tests.DashboardTest">
+                <methods>
+                    <include name="ClickElementsToAdd" />
+                </methods>
+            </class>
+            <class name="selenium.training.tests.ShoppingCardTest">
+                <methods>
+                    <include name="shoppingCardTest" />
                 </methods>
             </class>
         </classes>
