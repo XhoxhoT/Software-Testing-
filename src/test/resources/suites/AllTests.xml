@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Tests">
+
+    <listeners>
+        <listener class-name="selenium.training.utils.Listeners"/>
+    </listeners>
+
+    <test name="All Tests">
+        <classes>
+            <class name="selenium.training.tests.LoginTests">
+                <methods>
+                    <include name="successfulLoginTest"/>
+                    <include name="successfulLoginTest2"/>
+                    <exclude name="successfulLoginTest3"/>
+                    <include name="unsuccessfulLoginTest" />
+                </methods>
+            </class>
+            <class name="selenium.training.tests.AddNewEmployeeTest">
+                <methods>
+                    <include name="addNewEmployeeTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
