@@ -29,7 +29,7 @@ public class DashboardTest {
 
     @BeforeMethod
     public void init() {
-        Driver.loginOrRegister(3);
+        Driver.registerIfNeeded("continue");
     }
 
     @AfterMethod
@@ -48,22 +48,22 @@ public class DashboardTest {
 
         // Click on the second element
         // Verify that the message is displayed after clicking the second element
-        Assert.assertEquals(noteBookPageDK.clickSecondElementAndDisplayMessage(), "The product has been added to your wishlist");
+        Assert.assertEquals(noteBookPageDK.clickElementAndDisplayMessage("wishlist", 2), "The product has been added to your wishlist");
 
         // Click on the third element
         // Verify that the message is displayed after clicking the third element
-        Assert.assertEquals(noteBookPageDK.clickThirdElementAndDisplayMessage(), "The product has been added to your wishlist");
+        Assert.assertEquals(noteBookPageDK.clickElementAndDisplayMessage("wishlist", 3), "The product has been added to your wishlist");
 
         // Click on the fourth element
         // Verify that the message is displayed after clicking the fourth element
-        Assert.assertEquals(noteBookPageDK.clickFourthElementAndDisplayMessage(), "The product has been added to your shopping cart");
+        Assert.assertEquals(noteBookPageDK.clickElementAndDisplayMessage("shoppingcart", 4), "The product has been added to your shopping cart");
 
         // Click on the fifth element
         // Verify that the message is displayed after clicking the fifth element
-        Assert.assertEquals(noteBookPageDK.clickfifthElementAndDisplayMessage(), "The product has been added to your shopping cart");
+        Assert.assertEquals(noteBookPageDK.clickElementAndDisplayMessage("shoppingcart", 5), "The product has been added to your shopping cart");
         // Click on the sixth element
         // Verify that the message is displayed after clicking the sixth element
-        Assert.assertEquals(noteBookPageDK.clickSixthElementAndDisplayMessage(), "The product has been added to your shopping cart");
+        Assert.assertEquals(noteBookPageDK.clickElementAndDisplayMessage("shoppingcart", 6), "The product has been added to your shopping cart");
 
         //Verify that Wishlist on Menu bar displays +2
         Assert.assertEquals(Integer.parseInt(Driver.removeParanthesis(noteBookPageDK.wishlistCardNumberDisplayed.getText())), initialWishingListElements + 2);

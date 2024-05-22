@@ -30,12 +30,12 @@ public class ShoppingCardTest {
 
     @BeforeMethod
     public void init() {
-        Driver.loginOrRegister(3);
+        Driver.registerIfNeeded("continue");
         int initialShoppingCartElement = Integer.parseInt(Driver.removeParanthesis(shoppingCartPageDK.shoppingCartNumberDisplayed.getText()));
         if(initialShoppingCartElement == 0){
             noteBookPageDK = new NoteBookPageDK();
             noteBookPageDK.navigateToNotebookPage();
-            noteBookPageDK.clickSixthElementAndDisplayMessage();
+            noteBookPageDK.clickElementAndDisplayMessage("shoppingcart", 6);
         }
     }
 

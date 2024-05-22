@@ -11,77 +11,38 @@ import selenium.training.utils.Driver;
 import selenium.training.utils.GlobalConfigs;
 
 import java.time.Duration;
+import java.util.List;
 
-public class NoteBookPageDK extends BasePageDK{
+public class NoteBookPageDK extends BasePageDK {
 
     public String url = GlobalConfigs.URL + "notebooks";
-
-    @FindBy(xpath = "/html/body/div[6]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[3]/div[2]/button[3]")
-    public WebElement secondWishListButton;
-
-    @FindBy(xpath = "/html/body/div[6]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/div/div/div[3]/div/div[2]/div[3]/div[2]/button[3]")
-    public WebElement thirdWishListButton;
 
     @FindBy(css = "p.content")
     public WebElement addedToWishlistAndShoppingCart;
 
-    @FindBy(xpath = "/html/body/div[6]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/div/div/div[4]/div/div[2]/div[3]/div[2]/button[1]")
-    public WebElement fourthShoppingCartButton;
+    @FindBy(xpath = "//button[@title='Add to wishlist']")
+    public List<WebElement> wishlistButtons;
 
-    @FindBy(xpath = "/html/body/div[6]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/div/div/div[5]/div/div[2]/div[3]/div[2]/button[1]")
-    public WebElement fifthShoppingCartButton;
-
-    @FindBy(xpath = "/html/body/div[6]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/div/div/div[6]/div/div[2]/div[3]/div[2]/button[1]")
-    public WebElement sixthShoppingCartButton;
-
-    @FindBy(xpath = "//span[@class='close']")
-    public WebElement spanClose;
-
+    @FindBy(xpath = "(//button)[text()='Add to cart']")
+    public List<WebElement> shoppingCardButtons;
     public WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
 
-    public String clickSecondElementAndDisplayMessage() {
-
-        actions.moveToElement(secondWishListButton).click().perform();
-      //  secondWishListButton.click();
+    public String clickElementAndDisplayMessage(String type, int index) {
+        switch (type) {
+            case "wishlist": {
+                wishlistButtons.get(index - 1).click();
+            }
+            case "shoppingcart": {
+                shoppingCardButtons.get(index - 1).click();
+            }
+        }
         wait.until(ExpectedConditions.visibilityOf(addedToWishlistAndShoppingCart));
         String message = addedToWishlistAndShoppingCart.getText();
         wait.until(ExpectedConditions.invisibilityOf(addedToWishlistAndShoppingCart));
         return message;
     }
 
-    public String clickThirdElementAndDisplayMessage() {
-        thirdWishListButton.click();
-        wait.until(ExpectedConditions.visibilityOf(addedToWishlistAndShoppingCart));
-        String message = addedToWishlistAndShoppingCart.getText();
-        wait.until(ExpectedConditions.invisibilityOf(addedToWishlistAndShoppingCart));
-        return message;
-    }
-
-    public String clickFourthElementAndDisplayMessage() {
-        fourthShoppingCartButton.click();
-        wait.until(ExpectedConditions.visibilityOf(addedToWishlistAndShoppingCart));
-        String message = addedToWishlistAndShoppingCart.getText();
-        wait.until(ExpectedConditions.invisibilityOf(addedToWishlistAndShoppingCart));
-        return message;
-    }
-
-    public String clickfifthElementAndDisplayMessage() {
-        fifthShoppingCartButton.click();
-        wait.until(ExpectedConditions.visibilityOf(addedToWishlistAndShoppingCart));
-        String message = addedToWishlistAndShoppingCart.getText();
-        wait.until(ExpectedConditions.invisibilityOf(addedToWishlistAndShoppingCart));
-        return message;
-    }
-
-    public String clickSixthElementAndDisplayMessage() {
-        sixthShoppingCartButton.click();
-        wait.until(ExpectedConditions.visibilityOf(addedToWishlistAndShoppingCart));
-        String message = addedToWishlistAndShoppingCart.getText();
-        wait.until(ExpectedConditions.invisibilityOf(addedToWishlistAndShoppingCart));
-        return message;
-    }
-
-    public void navigateToNotebookPage(){
+    public void navigateToNotebookPage() {
         Driver.getDriver().get(url);
     }
 }

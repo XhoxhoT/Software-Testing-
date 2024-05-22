@@ -23,8 +23,6 @@ public class LoginPageDK extends BasePageDK{
     @FindBy(className = "password")
     public WebElement passwordInput;
 
-    @FindBy(xpath = "//div[@class='message-error validation-summary-errors']")
-    public WebElement errorMessage;
 
     public void login(String Email, String password)
     {

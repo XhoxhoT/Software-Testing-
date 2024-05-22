@@ -22,7 +22,7 @@ public class LoginTest {
     @BeforeMethod
     public void init()
     {
-        Driver.loginOrRegister(1);
+        Driver.registerIfNeeded("login");
     }
 
     @AfterMethod

@@ -47,6 +47,9 @@ public class RegisterPageDK extends BasePageDK{
    @FindBy(className = "result")
     WebElement registrationMessage;
 
+    @FindBy(xpath = "//div[@class='message-error validation-summary-errors']")
+    public WebElement errorMessage;
+
    public void register(String firstName, String lastName, String Email, String Company, String password, String Day, String Month, String Year)
    {
        maleRadioButton.click();

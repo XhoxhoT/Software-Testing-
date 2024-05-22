@@ -1,5 +1,7 @@
 package selenium.training.tests;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,7 +20,7 @@ public class RegisterTest {
 
     @BeforeMethod
     public void init() {
-        Driver.loginOrRegister(2);
+        Driver.registerIfNeeded("register");
     }
 
     @AfterMethod
